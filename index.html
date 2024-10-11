@@ -38,9 +38,9 @@
 </head>
 <body>
     <h1>Добро пожаловать в игру в категории!</h1>
-    <button onclick="startGame()">Начать игру</button>
-    <button onclick="chooseLetter()">Выбрать букву</button>
-    <button onclick="changeCategory()">Изменить категорию</button>
+    <button id="startGameBtn" onclick="startGame()">Начать игру</button>
+    <button id="chooseLetterBtn" onclick="chooseLetter()" style="display: none;">Выбрать букву</button>
+    <button id="changeCategoryBtn" onclick="changeCategory()" style="display: none;">Изменить категорию</button>
     
     <div id="categories"></div>
     <div id="letter"></div>
@@ -77,7 +77,9 @@
                 selectedCategories = getRandomCategories();
                 const categoriesDiv = document.getElementById('categories');
                 categoriesDiv.innerHTML = "<h2>Категории:</h2><ul>" + selectedCategories.map(cat => "<li>" + cat + "</li>").join("") + "</ul>";
-                startTimer();
+                document.getElementById('startGameBtn').style.display = 'none';
+                document.getElementById('chooseLetterBtn').style.display = 'inline';
+                document.getElementById('changeCategoryBtn').style.display = 'inline';
             });
         }
 
@@ -114,6 +116,7 @@
                 answersDiv.innerHTML += <label>${category}: <input type="text" id="answer${index}" /></label><br>;
             });
             answersDiv.innerHTML += <button onclick="checkAnswers()">Проверить ответы</button>;
+            startTimer();
         }
 
         function checkAnswers() {
@@ -164,7 +167,8 @@
         }
 
         function changeCategory() {
-            selectedCategories = getRandomCategories();
+            const newCategories = getRandomCategories();
+            selectedCategories = newCategories;
             const categoriesDiv = document.getElementById('categories');
             categoriesDiv.innerHTML = "<h2>Новые категории:</h2><ul>" + selectedCategories.map(cat => "<li>" + cat + "</li>").join("") + "</ul>";
         }
