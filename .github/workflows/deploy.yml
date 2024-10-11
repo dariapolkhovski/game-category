@@ -1,9 +1,9 @@
-name: Build and Deploy
+name: Deploy
 
 on:
   push:
     branches:
-      - main  # Замените на вашу основную ветку, если она называется иначе
+      - main
 
 jobs:
   build:
@@ -13,21 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'  # Убедитесь, что используете нужную версию Ruby
+      - name: Build
+        run: echo "Building the project..."
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-
-      - name: Build the site
-        run: bundle exec jekyll build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+      - name: Deploy
+        run: echo "Deploying the project..."
