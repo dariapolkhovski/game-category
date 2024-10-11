@@ -1,34 +1,30 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     background-color: #f4f4f4;
-}
-#categories, #letter, #timer, #answers {
-    margin: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-}
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
-}
-.correct { color: green; }
-.incorrect { color: red; }
-.partial { color: orange; }
-.animation {
-    display: none;
-    font-size: 24px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+#game-container {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#animation {
+    margin-top: 20px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
