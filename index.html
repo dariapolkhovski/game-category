@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра в категории</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Игра с категориями</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
-        <h1>Игра в категории</h1>
-        <button id="start-game">Начать игру</button>
-        <button id="select-letter" style="display:none;">Выбрать букву</button>
-        <button id="change-category" style="display:none;">Изменить категорию</button>
-        <div id="animation" style="display:none;"></div>
-        <div id="selected-category"></div>
-        <div id="selected-letter" style="display:none;"></div>
-        <div id="answers-container" style="display:none;">
-            <h2>Ваши ответы:</h2>
-            <div id="input-answers"></div>
-            <button id="check-answers">Проверить ответы</button>
-            <div id="results"></div>
-        </div>
-        <div id="timer" style="display:none;">Время: <span id="time-remaining"></span></div>
+        <h1>Игра с категориями</h1>
+        <button id="start-button">Начать игру</button>
+        <button id="change-category-button">Изменить категорию</button>
+        <button id="change-letter-button">Выбрать букву</button>
+        <div id="category-display"></div>
+        <div id="letter-display"></div>
+        <div id="timer"></div>
+        <div id="answer-inputs"></div>
+        <div id="result-display"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
