@@ -1,91 +1,66 @@
-
-const categories = [
-    "Напитки", 
-    "Популярная еда в России", 
-    "Сети быстрого питания", 
-    "Сладости", 
-    "Специи, приятности, приправы"
-];
-
-let selectedCategory;
-let selectedLetter;
+let categories = ['Напитки', 'Сладости', 'Города', 'Страны'];
+let selectedCategory = '';
+let selectedLetter = '';
 let timer;
-let timeRemaining;
+let timeLeft = 60;
 
-document.getElementById("start-game").addEventListener("click", startGame);
-document.getElementById("select-letter").addEventListener("click", selectLetter);
-document.getElementById("change-category").addEventListener("click", changeCategory);
-document.getElementById("check-answers").addEventListener("click", checkAnswers);
+document.getElementById('start-button').addEventListener('click', startGame);
+document.getElementById('change-category-button').addEventListener('click', changeCategory);
+document.getElementById('change-letter-button').addEventListener('click', changeLetter);
 
 function startGame() {
     selectedCategory = categories[Math.floor(Math.random() * categories.length)];
-    document.getElementById("selected-category").innerText = Категория: ${selectedCategory};
-    document.getElementById("selected-category").style.display = "block";
-    document.getElementById("start-game").style.display = "none";
-    document.getElementById("select-letter").style.display = "block";
-    document.getElementById("change-category").style.display = "block";
-    
-    document.getElementById("animation").style.display = "block";
-    document.getElementById("animation").innerHTML = "Анимация выбора категории...";
-    setTimeout(() => {
-        document.getElementById("animation").innerHTML = "Анимация рулета алфавита...";
-        setTimeout(() => {
-            selectLetter();
-        }, 2000);
-    }, 2000);
-}
-
-function selectLetter() {
-    const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split('');
-    selectedLetter = letters[Math.floor(Math.random() * letters.length)];
-    document.getElementById("selected-letter").innerText = Выбранная буква: ${selectedLetter};
-    document.getElementById("selected-letter").style.display = "block";
-    document.getElementById("timer").style.display = "block";
-    timeRemaining = 60; // Установите время на ответы
-    document.getElementById("time-remaining").innerText = timeRemaining;
+    selectedLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // A-Z
+    document.getElementById('category-display').innerText = 'Категория: ' + selectedCategory;
+    document.getElementById('letter-display').innerText = 'Буква: ' + selectedLetter;
     startTimer();
-    showInputAnswers();
-}
-
-function changeCategory() {
-    selectedCategory = categories[Math.floor(Math.random() * categories.length)];
-    document.getElementById("selected-category").innerText = Категория: ${selectedCategory};
+    setupAnswerInputs();
 }
 
 function startTimer() {
-    timer = setInterval(() => {
-        timeRemaining--;
-        document.getElementById("time-remaining").innerText = timeRemaining;
-        if (timeRemaining <= 0) {
+    timeLeft = 60;
+    document.getElementById('timer').innerText = 'Осталось времени: ' + timeLeft;
+    timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('timer').innerText = 'Осталось времени: ' + timeLeft;
+        if (timeLeft <= 0) {
             clearInterval(timer);
-            alert("Время вышло!");
             checkAnswers();
         }
     }, 1000);
 }
 
-function showInputAnswers() {
-    const inputContainer = document.getElementById("input-answers");
-    inputContainer.innerHTML = '';
+function setupAnswerInputs() {
+    const answerInputs = document.getElementById('answer-inputs');
+    answerInputs.innerHTML = '';
     for (let i = 0; i < 5; i++) {
-        inputContainer.innerHTML += <input type="text" class="answer" placeholder="Ответ ${i + 1}">;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'Ответ ' + (i + 1);
+        answerInputs.appendChild(input);
     }
-    document.getElementById("answers-container").style.display = "block";
+}
+
+function changeCategory() {
+    const newCategory = prompt("Введите новую категорию:");
+    if (newCategory) {
+        categories.push(newCategory);
+        alert('Категория добавлена: ' + newCategory);
+    }
+}
+
+function changeLetter() {
+    const newLetter = prompt("Введите новую букву (A-Z):").toUpperCase();
+    if (newLetter && /^[A-Z]$/.test(newLetter)) {
+        selectedLetter = newLetter;
+        document.getElementById('letter-display').innerText = 'Буква: ' + selectedLetter;
+    } else {
+        alert('Пожалуйста, введите букву от A до Z.');
+    }
 }
 
 function checkAnswers() {
     clearInterval(timer);
-    const answers = Array.from(document.querySelectorAll(".answer")).map(input => input.value);
-    const resultsContainer = document.getElementById("results");
-    resultsContainer.innerHTML = '';
-    
-    answers.forEach(answer => {
-        if (answer.toUpperCase().startsWith(selectedLetter)) {
-            resultsContainer.innerHTML += <div style="color: green;">${answer} - Правильный ответ!</div>;
-        } else if (answer !== "") {
-            resultsContainer.innerHTML += <div style="color: red;">${answer} - Неправильный ответ!</div>;
-        }
-    });
-    
-    // Ваша логика для отображения возможных ответов может быть добавлена здесь
+    // Здесь вы можете добавить логику для проверки ответов
+    document.getElementById('result-display').innerText = 'Игра окончена!';
 }
