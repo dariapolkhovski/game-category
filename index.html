@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игра в категории</title>
-    <link rel="stylesheet" href="style.css"> <!-- Подключение CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Добро пожаловать в игру в категории!</h1>
-    <button id="startGameBtn" onclick="startGame()">Начать игру</button>
-    <button id="chooseLetterBtn" onclick="chooseLetter()" style="display: none;">Выбрать букву</button>
-    <button id="changeCategoryBtn" onclick="changeCategory()" style="display: none;">Изменить категорию</button>
-    
-    <div id="categories"></div>
-    <div id="letter"></div>
-    <div id="timer"></div>
-    <div id="answers"></div>
-    <div id="animationCategories" class="animation"></div>
-    <div id="animationLetter" class="animation"></div>
-
-    <script src="script.js"></script> <!-- Подключение JavaScript -->
+    <div id="game-container">
+        <h1>Игра в категории</h1>
+        <button id="start-game">Начать игру</button>
+        <button id="select-letter" style="display:none;">Выбрать букву</button>
+        <button id="change-category" style="display:none;">Изменить категорию</button>
+        <div id="animation" style="display:none;"></div>
+        <div id="selected-category"></div>
+        <div id="selected-letter" style="display:none;"></div>
+        <div id="answers-container" style="display:none;">
+            <h2>Ваши ответы:</h2>
+            <div id="input-answers"></div>
+            <button id="check-answers">Проверить ответы</button>
+            <div id="results"></div>
+        </div>
+        <div id="timer" style="display:none;">Время: <span id="time-remaining"></span></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
