@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Игра с категориями</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Добро пожаловать в игру!</h1>
-        <div id="gameArea">
-            <button id="startGameButton">Начать игру</button>
-            <div id="questionArea" class="hidden">
-                <h2 id="question"></h2>
-                <input type="text" id="answerInput" placeholder="Ваш ответ">
-                <button id="submitAnswerButton">Ответить</button>
-                <p id="feedback" class="hidden"></p>
-            </div>
-        </div>
-    </div>
+
+<div class="container">
+    <h1>Игра с категориями</h1>
+    <p>Нажми кнопку, чтобы выбрать случайную букву и категории!</p>
+    <button class="button" onclick="startGame()">Начать игру</button>
     
-    <script src="script.js"></script>
+    <div class="output">
+        <p><strong>Категории:</strong></p>
+        <ul id="category-list"></ul>
+        <p><strong>Буква:</strong> <span id="random-letter"></span></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
